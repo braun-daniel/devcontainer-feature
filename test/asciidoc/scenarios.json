@@ -1,9 +1,9 @@
 {
-    "hello": {
+    "asciidoc": {
         "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
         "features": {
-            "hello": {
-                "greeting": "hello"
+            "asciidoc": {
+                "asciidocVersion": "latest"
             }
         }
     }
