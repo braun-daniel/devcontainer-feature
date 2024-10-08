@@ -1,0 +1,29 @@
+{
+    "name": "AsciiDoc",
+    "id": "asciidoc",
+    "version": "1.0.0",
+    "description": "Installs AsciiDoc, AsciiDoctor and Asciidoctor PDF.",
+    "options": {
+        "asciidoctorVersion": {
+            "type": "string",
+            "default": "latest",
+            "proposals": [
+                "latest",
+                "2.0.18"
+            ],
+            "description": "Version of AsciiDoctor to install. Use 'latest' for the most recent version."
+        },
+        "asciidocPdfVersion": {
+            "type": "string",
+            "default": "latest",
+            "proposals": [
+                "latest",
+                "2.3"
+            ],
+            "description": "Version of Asciidoctor PDF to install. Use 'latest' for the most recent version."
+        }
+    },
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}
