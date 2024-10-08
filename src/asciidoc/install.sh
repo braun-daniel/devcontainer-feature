@@ -10,17 +10,17 @@ ASCIIDOCTOR_VERSION="${ASCIIDOCTOR_VERSION:-latest}"
 # Default version for AsciiDoctor PDF (if not specified)
 ASCIIDOCTOR_PDF_VERSION="${ASCIIDOCTOR_PDF_VERSION:-latest}"
 
+# Default version for AsciiDoctor Diagram (if not specified)
+ASCIIDOCTOR_DIAGRAM_VERSION="${ASCIIDOCTOR_DIAGRAM_VERSION:-latest}"
+
 # Function to install system dependencies
 install_dependencies() {
     echo "Updating package lists..."
     apt-get update -y
 
-    echo "Installing essential dependencies: Python, Git, Make, Docbook XML, and Docbook XSL..."
+    echo "Installing essential dependencies..."
     apt-get install -y \
-        docbook \
-        docbook-xsl \
-        xsltproc \
-        asciidoc
+        ruby
 }
 
 # Function to install AsciiDoctor (optional faster alternative)
@@ -45,6 +45,17 @@ install_asciidoctor_pdf() {
     fi
 }
 
+# Function to install AsciiDoctor Diagram (optional faster alternative)
+install_asciidoctor_diagram() {
+    if [ "$ASCIIDOCTOR_DIAGRAM_VERSION" = "latest" ]; then
+        echo "Installing the latest version of AsciiDoctor Diagram via RubyGems..."
+        gem install asciidoctor-diagram
+    else
+        echo "Installing AsciiDoctor Diagram (version $ASCIIDOCTOR_DIAGRAM_VERSION) via RubyGems..."
+        gem install asciidoctor-diagram -v "$ASCIIDOCTOR_DIAGRAM_VERSION"
+    fi
+}
+
 # Function to clean up after installation
 cleanup() {
     echo "Cleaning up unnecessary packages and cache..."
@@ -57,17 +68,11 @@ cleanup() {
 install_dependencies
 install_asciidoctor
 install_asciidoctor_pdf
+install_asciidoctor_diagram
 cleanup
 
 # Verification of the installations
-echo "Verifying installation of AsciiDoc and AsciiDoctor..."
-if command -v asciidoc >/dev/null 2>&1; then
-    echo "AsciiDoc installed successfully."
-else
-    echo "Error: AsciiDoc installation failed." >&2
-    exit 1
-fi
-
+echo "Verifying installation..."
 if command -v asciidoctor >/dev/null 2>&1; then
     echo "AsciiDoctor installed successfully."
 else
@@ -81,5 +86,3 @@ else
     echo "Error: AsciiDoctor PDF installation failed." >&2
     exit 1
 fi
-
-echo "AsciiDoc and AsciiDoctor and AsciiDoctor PDF installed successfully."
