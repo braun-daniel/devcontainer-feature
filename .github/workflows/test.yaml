@@ -35,6 +35,8 @@ jobs:
       matrix:
         features:
           - asciidoc
+          - fzf
+          - spaceship
     steps:
       - uses: actions/checkout@v4
 
