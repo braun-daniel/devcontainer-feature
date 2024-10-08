@@ -2,7 +2,7 @@
     "name": "AsciiDoc",
     "id": "asciidoc",
     "version": "0.0.1",
-    "description": "Installs AsciiDoc and AsciiDoctor.",
+    "description": "Installs AsciiDoc, AsciiDoctor and Asciidoctor PDF.",
     "options": {
         "asciidoctorVersion": {
             "type": "string",
@@ -12,6 +12,15 @@
                 "2.0.18"
             ],
             "description": "Version of AsciiDoctor to install. Use 'latest' for the most recent version."
+        },
+        "asciidocPdfVersion": {
+            "type": "string",
+            "default": "latest",
+            "proposals": [
+                "latest",
+                "2.3"
+            ],
+            "description": "Version of Asciidoctor PDF to install. Use 'latest' for the most recent version."
         }
     },
     "installsAfter": [
