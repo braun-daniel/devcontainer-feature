@@ -20,3 +20,24 @@ else
     echo "Error: fzf installation failed." >&2
     exit 1
 fi
+
+# Set up fzf key bindings and fuzzy completion for bash
+if [ -n "$BASH_VERSION" ]; then
+    echo "Setting up fzf key bindings and fuzzy completion for bash..."
+    echo 'eval "$(fzf --bash)"' >> ~/.bashrc
+    source ~/.bashrc
+fi
+
+# Set up fzf key bindings and fuzzy completion for zsh
+if [ -n "$ZSH_VERSION" ]; then
+    echo "Setting up fzf key bindings and fuzzy completion for zsh..."
+    echo 'source <(fzf --zsh)' >> ~/.zshrc
+    source ~/.zshrc
+fi
+
+# Set up fzf key bindings for fish
+if [ -n "$FISH_VERSION" ]; then
+    echo "Setting up fzf key bindings for fish..."
+    echo 'fzf --fish | source' >> ~/.config/fish/config.fish
+    source ~/.config/fish/config.fish
+fi
