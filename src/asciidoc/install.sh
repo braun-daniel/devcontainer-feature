@@ -13,6 +13,16 @@ ASCIIDOCTOR_PDF_VERSION="${ASCIIDOCTOR_PDF_VERSION:-latest}"
 # Default version for AsciiDoctor Diagram (if not specified)
 ASCIIDOCTOR_DIAGRAM_VERSION="${ASCIIDOCTOR_DIAGRAM_VERSION:-latest}"
 
+# Function to install system dependencies
+install_dependencies() {
+    echo "Updating package lists..."
+    apt-get update -y
+
+    echo "Installing essential dependencies..."
+    apt-get install -y \
+        ruby
+}
+
 # Function to install AsciiDoctor (optional faster alternative)
 install_asciidoctor() {
     if [ "$ASCIIDOCTOR_VERSION" = "latest" ]; then
@@ -47,6 +57,7 @@ install_asciidoctor_diagram() {
 }
 
 # Main installation process
+install_dependencies
 install_asciidoctor
 install_asciidoctor_pdf
 install_asciidoctor_diagram
