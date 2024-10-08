@@ -17,14 +17,9 @@ install_dependencies() {
 
     echo "Installing essential dependencies: Python, Git, Make, Docbook XML, and Docbook XSL..."
     apt-get install -y \
-        python3 \
-        python3-pip \
-        git \
-        make \
         docbook \
         docbook-xsl \
         xsltproc \
-        ruby \
         asciidoc
 }
 
