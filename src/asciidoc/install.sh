@@ -73,13 +73,6 @@ cleanup
 
 # Verification of the installations
 echo "Verifying installation..."
-if command -v asciidoc >/dev/null 2>&1; then
-    echo "AsciiDoc installed successfully."
-else
-    echo "Error: AsciiDoc installation failed." >&2
-    exit 1
-fi
-
 if command -v asciidoctor >/dev/null 2>&1; then
     echo "AsciiDoctor installed successfully."
 else
@@ -93,5 +86,3 @@ else
     echo "Error: AsciiDoctor PDF installation failed." >&2
     exit 1
 fi
-
-echo "AsciiDoc, AsciiDoctor and AsciiDoctor PDF installed successfully."
