@@ -7,6 +7,9 @@ set -e
 # Default version for AsciiDoctor (if not specified)
 ASCIIDOCTOR_VERSION="${ASCIIDOCTOR_VERSION:-latest}"
 
+# Default version for AsciiDoctor PDF (if not specified)
+ASCIIDOCTOR_PDF_VERSION="${ASCIIDOCTOR_PDF_VERSION:-latest}"
+
 # Function to install system dependencies
 install_dependencies() {
     echo "Updating package lists..."
@@ -36,6 +39,17 @@ install_asciidoctor() {
     fi
 }
 
+# Function to install AsciiDoctor PDF (optional faster alternative)
+install_asciidoctor_pdf() {
+    if [ "$ASCIIDOCTOR_PDF_VERSION" = "latest" ]; then
+        echo "Installing the latest version of AsciiDoctor PDF via RubyGems..."
+        gem install asciidoctor-pdf
+    else
+        echo "Installing AsciiDoctor PDF (version $ASCIIDOCTOR_PDF_VERSION) via RubyGems..."
+        gem install asciidoctor-pdf -v "$ASCIIDOCTOR_PDF_VERSION"
+    fi
+}
+
 # Function to clean up after installation
 cleanup() {
     echo "Cleaning up unnecessary packages and cache..."
@@ -47,6 +61,7 @@ cleanup() {
 # Main installation process
 install_dependencies
 install_asciidoctor
+install_asciidoctor_pdf
 cleanup
 
 # Verification of the installations
@@ -65,4 +80,11 @@ else
     exit 1
 fi
 
-echo "AsciiDoc and AsciiDoctor setup is complete!"
+if command -v asciidoctor-pdf >/dev/null 2>&1; then
+    echo "AsciiDoctor PDF installed successfully."
+else
+    echo "Error: AsciiDoctor PDF installation failed." >&2
+    exit 1
+fi
+
+echo "AsciiDoc and AsciiDoctor and AsciiDoctor PDF installed successfully."
