@@ -1,0 +1,9 @@
+{
+    "name": "fzf",
+    "id": "fzf",
+    "version": "0.0.1",
+    "description": "Installs fzf - a command line fuzzy search.",
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}

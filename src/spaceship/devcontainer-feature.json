@@ -1,0 +1,9 @@
+{
+    "name": "Spaceship",
+    "id": "spaceship",
+    "version": "0.0.1",
+    "description": "Installs spaceship-prompt.",
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}
