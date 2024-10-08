@@ -56,6 +56,14 @@ install_asciidoctor_diagram() {
     fi
 }
 
+# Function to clean up after installation
+cleanup() {
+    echo "Cleaning up unnecessary packages and cache..."
+    apt-get autoremove -y
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+}
+
 # Main installation process
 install_dependencies
 install_asciidoctor
