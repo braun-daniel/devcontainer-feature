@@ -13,10 +13,6 @@ apt-get install -y git
 echo "Changing to remote user..."
 su - "$_REMOTE_USER"
 
-# Clone the fzf repository into the remote user's home directory
-echo "Cloning fzf repository..."
-git clone --depth 1 https://github.com/junegunn/fzf.git "${_REMOTE_USER_HOME}/.fzf"
-
-# Run the fzf install script
-echo "Running fzf install script..."
-$REMOTE_USER_HOME/.fzf/install --all
+# Install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install

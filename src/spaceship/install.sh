@@ -5,9 +5,9 @@
 set -e
 
 # Install ZSH
-echo "Installing ZSH..."
+echo "Installing dependencies..."
 apt-get update
-apt-get install -y zsh
+apt-get install -y zsh git
 
 # Change to remote user
 echo "Changing to remote user..."
