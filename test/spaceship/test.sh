@@ -6,7 +6,7 @@ set -e
 source dev-container-features-test-lib
 
 # Definition specific tests
-check "check for spaceship" spaceship --version
+check "check for spaceship" echo $PROMPT | grep "spaceship"
 
 # Report result
 reportResults
