@@ -9,10 +9,11 @@ echo "Installing dependencies..."
 apt-get update
 apt-get install -y zsh git
 
-# Change to remote user
-echo "Changing to remote user..."
+# Use ZSH as default shell
+echo "Permanently changing shell to ZSH..."
+chsh -s "$(which zsh)"
 
 # Install spaceship-prompt
-mkdir -p "${_REMOTE_USER_HOME}/.zsh"
-su - "$_REMOTE_USER" -c "git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git ~/.zsh/spaceship"
-su - "$_REMOTE_USER" -c "echo 'source \"~/.zsh/spaceship/spaceship.zsh\"' >> \"~/.zshrc\""
+su - "$_REMOTE_USER" -c "mkdir -p ${_REMOTE_USER_HOME}/.zsh"
+su - "$_REMOTE_USER" -c "git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git ${_REMOTE_USER_HOME}/.zsh/spaceship"
+su - "$_REMOTE_USER" -c "echo 'source \"${_REMOTE_USER_HOME}/.zsh/spaceship/spaceship.zsh\"' >> \"${_REMOTE_USER_HOME}/.zshrc\""

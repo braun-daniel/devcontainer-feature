@@ -10,5 +10,5 @@ apt-get update
 apt-get install -y git
 
 # Install fzf
-su - "$_REMOTE_USER" -c "git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf"
-su - "$_REMOTE_USER" -c "~/.fzf/install"
+su - "$_REMOTE_USER" -c "git clone --depth 1 https://github.com/junegunn/fzf.git ${_REMOTE_USER_HOME}/.fzf"
+su - "$_REMOTE_USER" -c "${_REMOTE_USER_HOME}/.fzf/install"
