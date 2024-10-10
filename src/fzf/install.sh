@@ -4,40 +4,38 @@
 # Exit script on any error
 set -e
 
-# Update package lists and install fzf
-echo "Updating package lists and installing fzf..."
-apt-get update -y && apt-get install -y fzf
+# Determine the remote user (typically non-root, like vscode or devuser)
+REMOTE_USER="${_REMOTE_USER:-root}"
 
-# Clean up unnecessary packages and cache
-echo "Cleaning up unnecessary packages and cache..."
-apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+# Clone the fzf repository into the remote user's home directory
+echo "Cloning fzf repository..."
+git clone --depth 1 https://github.com/junegunn/fzf.git "$REMOTE_USER_HOME/.fzf"
 
-# Verify the installation
-echo "Verifying installation..."
-if command -v fzf --version >/dev/null 2>&1; then
-    echo "fzf installed successfully."
-else
-    echo "Error: fzf installation failed." >&2
-    exit 1
-fi
+# Run the fzf install script
+echo "Running fzf install script..."
+"$REMOTE_USER_HOME/.fzf/install"
+
+# Home directory of the remote user
+USER_HOME="/home/${REMOTE_USER}"
 
 # Set up fzf key bindings and fuzzy completion for bash
 if [ -n "$BASH_VERSION" ]; then
     echo "Setting up fzf key bindings and fuzzy completion for bash..."
-    echo 'eval "$(fzf --bash)"' >> ~/.bashrc
-    source ~/.bashrc
+    echo 'eval "$(fzf --bash)"' >> "${USER_HOME}/.bashrc"
+    chown "${REMOTE_USER}:${REMOTE_USER}" "${USER_HOME}/.bashrc"
 fi
 
 # Set up fzf key bindings and fuzzy completion for zsh
 if [ -n "$ZSH_VERSION" ]; then
     echo "Setting up fzf key bindings and fuzzy completion for zsh..."
-    echo 'source <(fzf --zsh)' >> ~/.zshrc
-    source ~/.zshrc
+    echo 'source <(fzf --zsh)' >> "${USER_HOME}/.zshrc"
+    chown "${REMOTE_USER}:${REMOTE_USER}" "${USER_HOME}/.zshrc"
 fi
 
 # Set up fzf key bindings for fish
 if [ -n "$FISH_VERSION" ]; then
     echo "Setting up fzf key bindings for fish..."
-    echo 'fzf --fish | source' >> ~/.config/fish/config.fish
-    source ~/.config/fish/config.fish
+    mkdir -p "${USER_HOME}/.config/fish"
+    echo 'fzf --fish | source' >> "${USER_HOME}/.config/fish/config.fish"
+    chown -R "${REMOTE_USER}:${REMOTE_USER}" "${USER_HOME}/.config/fish"
 fi

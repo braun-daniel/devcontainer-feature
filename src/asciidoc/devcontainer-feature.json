@@ -1,37 +1,8 @@
 {
     "name": "AsciiDoc",
     "id": "asciidoc",
-    "version": "1.1.0",
-    "description": "Installs AsciiDoctor, Asciidoctor PDF and AsciiDoctor Diagram.",
-    "options": {
-        "asciidoctorVersion": {
-            "type": "string",
-            "default": "latest",
-            "proposals": [
-                "latest",
-                "2.0.23"
-            ],
-            "description": "Version of AsciiDoctor to install. Use 'latest' for the most recent version."
-        },
-        "asciidoctorPdfVersion": {
-            "type": "string",
-            "default": "latest",
-            "proposals": [
-                "latest",
-                "2.3"
-            ],
-            "description": "Version of Asciidoctor PDF to install. Use 'latest' for the most recent version."
-        },
-        "asciidoctorDiagramVersion": {
-            "type": "string",
-            "default": "latest",
-            "proposals": [
-                "latest",
-                "2.3.1"
-            ],
-            "description": "Version of Asciidoctor Diagram to install. Use 'latest' for the most recent version."
-        }
-    },
+    "version": "1.2.0",
+    "description": "Installs asciidoctor, asciidoctor-pdf, asciidoctor-diagram and asciidoctor-kroki via. gem.",
     "installsAfter": [
         "ghcr.io/devcontainers/features/common-utils"
     ]
