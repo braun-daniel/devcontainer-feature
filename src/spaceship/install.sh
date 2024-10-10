@@ -11,13 +11,8 @@ apt-get install -y zsh git
 
 # Change to remote user
 echo "Changing to remote user..."
-su - "$_REMOTE_USER"
 
-# Create the .zsh directory if it doesn't exist
+# Install spaceship-prompt
 mkdir -p "${_REMOTE_USER_HOME}/.zsh"
-
-# Clone the spaceship-prompt repository into the .zsh directory
-git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "${_REMOTE_USER_HOME}/.zsh/spaceship"
-
-# Make sure the spaceship-prompt is permanently sourced in the .zshrc file
-echo 'source "${_REMOTE_USER_HOME}/.zsh/spaceship/spaceship.zsh"' >> "${_REMOTE_USER_HOME}/.zshrc"
+su - "$_REMOTE_USER" -c "git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git ~/.zsh/spaceship"
+su - "$_REMOTE_USER" -c "echo 'source \"~/.zsh/spaceship/spaceship.zsh\"' >> \"~/.zshrc\""

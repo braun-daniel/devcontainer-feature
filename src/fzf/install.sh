@@ -9,10 +9,6 @@ echo "Installing git..."
 apt-get update
 apt-get install -y git
 
-# Change to remote user
-echo "Changing to remote user..."
-su - "$_REMOTE_USER"
-
 # Install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+su - "$_REMOTE_USER" -c "git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf"
+su - "$_REMOTE_USER" -c "~/.fzf/install"
