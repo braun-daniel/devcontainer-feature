@@ -6,7 +6,7 @@ set -e
 source dev-container-features-test-lib
 
 # Definition specific tests
-check "check for fzf" su - "$_REMOTE_USER" -c "fzf --version"
+check "check for fzf" fzf --version
 
 # Report result
 reportResults
