@@ -4,20 +4,16 @@
 # Exit script on any error
 set -e
 
-# Check if zsh is installed
-if ! command -v zsh > /dev/null; then
-    echo "Zsh is not installed. Please install zsh before running this script."
-    exit 1
-fi
+# Install ZSH
+echo "Installing dependencies..."
+apt-get update
+apt-get install -y zsh git
 
-# Ensure the DevContainer user's home directory is used
-DEVCONTAINER_HOME="${HOME}"
+# Use ZSH as default shell
+echo "Permanently changing shell to ZSH..."
+chsh -s "$(which zsh)"
 
-# Create the .zsh directory if it doesn't exist
-mkdir -p "$DEVCONTAINER_HOME/.zsh"
-
-# Clone the spaceship-prompt repository into the .zsh directory
-git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$DEVCONTAINER_HOME/.zsh/spaceship"
-
-# Make sure the spaceship-prompt is permanently sourced in the .zshrc file
-echo 'source "$DEVCONTAINER_HOME/.zsh/spaceship/spaceship.zsh"' >> "$DEVCONTAINER_HOME/.zshrc"
+# Install spaceship-prompt
+su - "$_REMOTE_USER" -c "mkdir -p ${_REMOTE_USER_HOME}/.zsh"
+su - "$_REMOTE_USER" -c "git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git ${_REMOTE_USER_HOME}/.zsh/spaceship"
+su - "$_REMOTE_USER" -c "echo 'source \"${_REMOTE_USER_HOME}/.zsh/spaceship/spaceship.zsh\"' >> \"${_REMOTE_USER_HOME}/.zshrc\""
