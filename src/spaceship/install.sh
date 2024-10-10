@@ -4,6 +4,12 @@
 # Exit script on any error
 set -e
 
+# Check if zsh is installed
+if ! command -v zsh > /dev/null; then
+    echo "Zsh is not installed. Please install zsh before running this script."
+    exit 1
+fi
+
 # Ensure the DevContainer user's home directory is used
 DEVCONTAINER_HOME="${HOME}"
 
@@ -14,4 +20,4 @@ mkdir -p "$DEVCONTAINER_HOME/.zsh"
 git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$DEVCONTAINER_HOME/.zsh/spaceship"
 
 # Make sure the spaceship-prompt is permanently sourced in the .zshrc file
-echo 'source "$HOME/.zsh/spaceship/spaceship.zsh"' >> "$DEVCONTAINER_HOME/.zshrc"
+echo 'source "$DEVCONTAINER_HOME/.zsh/spaceship/spaceship.zsh"' >> "$DEVCONTAINER_HOME/.zshrc"
