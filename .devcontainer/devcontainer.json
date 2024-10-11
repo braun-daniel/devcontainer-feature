@@ -18,8 +18,13 @@
         }
     },
     "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/braun-daniel/devcontainer-features/fzf:1": {},
+        "ghcr.io/braun-daniel/devcontainer-features/spaceship:1": {}
     },
     "remoteUser": "node",
-    "updateContentCommand": "npm install -g @devcontainers/cli"
+    "updateContentCommand": "npm install -g @devcontainers/cli",
+    "containerEnv": {
+        "SHELL": "/bin/zsh"
+    }
 }
