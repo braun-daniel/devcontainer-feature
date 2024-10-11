@@ -1,7 +1,7 @@
 
 # AsciiDoc (asciidoc)
 
-Installs AsciiDoctor, Asciidoctor PDF and AsciiDoctor Diagram.
+Installs asciidoctor, asciidoctor-pdf, asciidoctor-diagram and asciidoctor-kroki via. gem.
 
 ## Example Usage
 
@@ -11,13 +11,7 @@ Installs AsciiDoctor, Asciidoctor PDF and AsciiDoctor Diagram.
 }
 ```
 
-## Options
 
-| Options Id | Description | Type | Default Value |
-|-----|-----|-----|-----|
-| asciidoctorVersion | Version of AsciiDoctor to install. Use 'latest' for the most recent version. | string | latest |
-| asciidoctorPdfVersion | Version of Asciidoctor PDF to install. Use 'latest' for the most recent version. | string | latest |
-| asciidoctorDiagramVersion | Version of Asciidoctor Diagram to install. Use 'latest' for the most recent version. | string | latest |
 
 
 
